@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI CLUB ｜ 10月智慧旅遊家・命定盲盒與實戰錦囊</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Noto Sans TC', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #090d16 0%, #17153b 45%, #2e236c 100%);
+      min-height: 100vh;
+      color: #f8fafc;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    }
+    .pulse-glow {
+      box-shadow: 0 0 35px rgba(236, 72, 153, 0.45);
+    }
+    .quiz-option {
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .quiz-option:hover {
+      transform: translateY(-2px);
+      border-color: #ec4899;
+      background: rgba(255, 255, 255, 0.16);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+    .floating-box {
+      animation: float 3.5s ease-in-out infinite;
+    }
+    .tab-btn.active {
+      background: linear-gradient(90deg, #ec4899, #8b5cf6);
+      color: #ffffff;
+      border-color: transparent;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center p-3 sm:p-6 md:p-8">
+
+  <main class="w-full max-w-2xl mx-auto glass-card rounded-3xl p-5 sm:p-8 relative overflow-hidden my-4">
+    
+    <!-- Decorative Background Lights -->
+    <div class="absolute -top-24 -left-24 w-64 h-64 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- Header Tag -->
+    <header class="text-center mb-6 relative z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-white/10 text-pink-300 border border-white/20 mb-3">
+        <span class="w-2 h-2 rounded-full bg-pink-400 animate-ping"></span>
+        YFY AI CLUB ‧ 10月特別企劃
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-white">
+        ✈️ AI 旅遊性格命定盲盒 ＆ 課後實戰錦囊
+      </h1>
+      <p class="text-slate-300 text-xs sm:text-sm mt-1.5">
+        3 題測出出遊 DNA ‧ 解鎖阿杰老師私藏「Gemini 全能旅遊管家」提詞庫
+      </p>
+
+      <div id="batchBadge" class="mt-2.5 inline-block text-[11px] px-2.5 py-0.5 rounded-md bg-purple-900/60 text-purple-200 border border-purple-400/30">
+        識別載入中...
+      </div>
+    </header>
+
+    <!-- SECTION 1: 測驗首頁與身分判定 -->
+    <section id="screenIntro" class="text-center space-y-5 relative z-10">
+      <div class="floating-box my-1">
+        <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-3xl bg-gradient-to-tr from-pink-500 via-purple-600 to-indigo-600 p-1 pulse-glow flex items-center justify-center">
+          <div class="w-full h-full bg-slate-900/80 rounded-[22px] flex items-center justify-center text-4xl">
+            🎁
+          </div>
+        </div>
+      </div>
+      
+      <!-- 學習亮點整理卡 -->
+      <div class="bg-white/5 rounded-2xl p-4 border border-white/10 text-slate-300 text-xs sm:text-sm leading-relaxed text-left space-y-2">
+        <p class="flex items-center gap-2 font-bold text-white text-sm">
+          <span>✨</span> 本次測驗專屬解鎖內容：
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+          <div class="bg-black/20 p-2.5 rounded-xl border border-white/5">
+            <span class="font-bold text-pink-300">① 旅人 DNA 解析</span>
+            <p class="text-slate-400 mt-0.5">洞察出遊盲點與神級隊友定位</p>
+          </div>
+          <div class="bg-black/20 p-2.5 rounded-xl border border-white/5">
+            <span class="font-bold text-purple-300">② 3 組阿杰老師咒語</span>
+            <p class="text-slate-400 mt-0.5">順遊排程、排隊美食、突發救急</p>
+          </div>
+          <div class="bg-black/20 p-2.5 rounded-xl border border-white/5">
+            <span class="font-bold text-indigo-300">③ 旅遊圖卡生成密技</span>
+            <p class="text-slate-400 mt-0.5">免寫代碼一鍵轉成精美互動手冊</p>
+          </div>
+          <div class="bg-black/20 p-2.5 rounded-xl border border-white/5">
+            <span class="font-bold text-amber-300">④ 投稿搶 500 元禮券</span>
+            <p class="text-slate-400 mt-0.5">實作成果投件，人人有機會拿獎金</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 模式 A：自動帶入（0 輸入通行） -->
+      <div id="autoIdentifiedBox" class="hidden bg-emerald-950/40 p-4 rounded-2xl border border-emerald-500/40 text-left space-y-1.5">
+        <div class="flex items-center justify-between text-xs font-bold text-emerald-300">
+          <span class="flex items-center gap-1.5">
+            <span>🎫</span> 研習身分已由信件自動就緒
+          </span>
+          <span class="text-[10px] bg-emerald-500/20 px-2 py-0.5 rounded-md border border-emerald-400/30">免手動輸入</span>
+        </div>
+        <p class="text-white font-mono text-sm font-bold" id="autoEmpIdDisplay">
+          持有人：載入中...
+        </p>
+        <p class="text-[11px] text-slate-300">
+          系統已綁定您的專屬研習身分與禮品卡得獎序號，點擊即可直接啟動測驗！
+        </p>
+      </div>
+
+      <!-- 模式 B：手動輸入備援 -->
+      <div id="manualInputBox" class="bg-black/30 p-3.5 rounded-2xl border border-pink-500/30 space-y-2 text-left">
+        <label for="inputEmpId" class="block text-xs font-bold text-pink-300 flex items-center justify-between">
+          <span>🎟️ 請輸入 9 碼工號 或 公司英文帳號：</span>
+          <span id="savedTag" class="hidden text-[10px] text-emerald-400 font-normal">已自動記住</span>
+        </label>
+        <input 
+          type="text" 
+          id="inputEmpId" 
+          placeholder="例如：100123456 或 ming.wang" 
+          class="w-full px-3.5 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-pink-500 transition"
+        />
+        <div class="flex items-center justify-between text-[11px] text-slate-400 pt-0.5">
+          <span>※ 用於客製盲盒卡與 500 元禮券得獎憑證核對</span>
+          <span id="idError" class="hidden text-rose-400 font-bold">請填寫工號或帳號！</span>
+        </div>
+      </div>
+
+      <button id="btnStart" class="w-full py-3.5 px-6 rounded-2xl font-black text-base text-white bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:opacity-95 shadow-lg shadow-pink-500/25 transition duration-200">
+        解鎖命定盲盒 ＆ 領取專屬錦囊（約 30 秒）👉
+      </button>
+    </section>
+
+    <!-- SECTION 2: 測驗題目頁 -->
+    <section id="screenQuiz" class="hidden space-y-5 relative z-10">
+      <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+        <div id="progressBar" class="bg-gradient-to-r from-pink-500 to-purple-500 h-2 rounded-full transition-all duration-300" style="width: 33%"></div>
+      </div>
+
+      <div class="flex items-center justify-between text-xs text-purple-300 font-bold">
+        <span id="questionStep">QUESTION 1 / 3</span>
+        <span>AI 旅人體質演算中...</span>
+      </div>
+
+      <div class="bg-white/5 rounded-2xl p-4 sm:p-5 border border-white/10">
+        <h2 id="questionText" class="text-base sm:text-lg font-bold text-white leading-snug">
+          題目載入中...
+        </h2>
+      </div>
+
+      <div class="space-y-3" id="optionsContainer">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- SECTION 3: 測驗結果與深度學習錦囊頁 -->
+    <section id="screenResult" class="hidden space-y-5 relative z-10">
+      
+      <!-- 結果主卡片 -->
+      <div class="bg-gradient-to-b from-white/15 to-white/5 border border-pink-400/40 rounded-2xl p-5 sm:p-6 text-center space-y-3 relative overflow-hidden">
+        <div class="text-5xl my-1" id="resEmoji">🏖️</div>
+        
+        <div class="inline-block text-xs font-black uppercase tracking-wider text-pink-300 bg-pink-500/20 px-3 py-1 rounded-full border border-pink-500/30" id="resTag">
+          出遊 DNA 解析
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl font-black text-white" id="resTitle">
+          漫遊放空散步派
+        </h2>
+
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed text-left bg-black/20 p-3.5 rounded-xl border border-white/5" id="resDesc">
+          性格描述載入中...
+        </p>
+
+        <div class="flex flex-wrap items-center justify-between text-[11px] text-purple-300 pt-1 border-t border-white/10">
+          <span id="resOwnerBadge">報告持有人：-</span>
+          <span class="text-slate-400">認證：YFY AI CLUB 10月研習</span>
+        </div>
+      </div>
+
+      <!-- 核心學習模組：三大實戰錦囊 (Tab 切換) -->
+      <div class="bg-slate-900/85 border border-purple-500/30 rounded-2xl p-4 sm:p-5 text-left space-y-3">
+        <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
+          <div class="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-purple-300">
+            <span>🪄</span> 阿杰老師專屬隨身提詞庫（點擊一鍵複製）
+          </div>
+          <button id="btnCopyPrompt" class="text-xs bg-purple-600 hover:bg-purple-500 text-white px-3 py-1.5 rounded-lg transition duration-150 flex items-center gap-1 shadow-sm font-bold">
+            <span>📋</span> <span id="copyBtnText">一鍵複製當前咒語</span>
+          </button>
+        </div>
+
+        <!-- Tab 選項卡 -->
+        <div class="flex gap-2">
+          <button onclick="switchTab(0)" id="tab0" class="tab-btn active text-xs px-3 py-1.5 rounded-lg border border-white/20 transition">
+            ① 順遊排程指南
+          </button>
+          <button onclick="switchTab(1)" id="tab1" class="tab-btn text-xs px-3 py-1.5 rounded-lg border border-white/20 text-slate-300 transition">
+            ② 私房防踩雷
+          </button>
+          <button onclick="switchTab(2)" id="tab2" class="tab-btn text-xs px-3 py-1.5 rounded-lg border border-white/20 text-slate-300 transition">
+            ③ 突發應變救急
+          </button>
+        </div>
+
+        <!-- 提詞展示區 -->
+        <div class="relative">
+          <div class="text-[11px] text-pink-300 font-bold mb-1" id="tabSubtitle">
+            【技法說明】：利用 Gemini 搭配地理定位，自動計算不繞路交通動線
+          </div>
+          <pre class="text-xs text-slate-300 leading-relaxed font-mono bg-black/60 p-3 rounded-xl border border-white/10 whitespace-pre-wrap break-words" id="resPromptBox">
+載入中...
+          </pre>
+        </div>
+
+        <!-- 阿杰老師重點備忘小卡 -->
+        <div class="bg-purple-950/40 border border-purple-500/20 rounded-xl p-3 text-[11px] text-purple-200 space-y-1">
+          <div class="font-bold flex items-center gap-1 text-pink-300">
+            <span>💡</span> 阿杰學長課堂私房秘訣：
+          </div>
+          <p id="resProTip">
+            「直接把想去的 3~4 個 Google Maps 景點名稱複製給 Gemini，加上『請排出順向步行路線並標註各點停留建議時間』，即可產出免動腦的高效動線！」
+          </p>
+        </div>
+      </div>
+
+      <!-- 課後成果轉化：雙軌行動按鈕 -->
+      <div class="space-y-2.5 pt-1">
+        <a id="btnSubmissionLink" href="https://forms.office.com" target="_blank" class="block w-full text-center py-3.5 px-5 rounded-2xl font-black text-sm text-white bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:opacity-90 shadow-lg shadow-pink-500/20 transition">
+          🚀 產出旅遊圖卡 ＆ 投稿搶 500 元禮券 (收件至 10/29) ↗
+        </a>
+        <a id="btnReplayLink" href="https://lms.yfy.com" target="_blank" class="block w-full text-center py-2.5 px-4 rounded-xl font-medium text-xs text-slate-300 bg-white/10 hover:bg-white/15 border border-white/10 transition">
+          📺 沒跟到直播？前往 LMS 觀看 10 月阿杰老師精華回放 ↗
+        </a>
+        <button id="btnRestart" class="w-full text-center py-1.5 text-xs text-slate-400 hover:text-slate-200 transition">
+          🔄 重新測驗換個玩法
+        </button>
+      </div>
+
+    </section>
+
+    <footer class="mt-6 pt-4 border-t border-white/10 text-center text-[11px] text-slate-500">
+      AI CLUB 智造所 ‧ 探索生活無限可能 ‧ 人資訓練培育組
+    </footer>
+
+  </main>
+
+  <script>
+    // ==========================================
+    // 1. 核心參數與外部連結設定
+    // ==========================================
+    const CONFIG = {
+      // 請替換為您部署的 Google Apps Script Web App URL
+      GAS_ENDPOINT_URL: "https://script.google.com/macros/s/AKfycby.../exec", 
+      // 10 月實踐徵件表單
+      SUBMISSION_FORM_URL: "https://forms.office.com/r/your-submission-form",
+      // 10 月 LMS 精華回放課程網址
+      LMS_REPLAY_URL: "https://lms.yfy.com/course/view.php?id=your-course-id"
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramUser = urlParams.get('user') || urlParams.get('id') || urlParams.get('emp_id') || "";
+    const currentBatch = urlParams.get('batch') || urlParams.get('group') || "全體推播";
+    const currentTopic = urlParams.get('topic') || "10月旅遊性格盲盒";
+
+    document.getElementById('batchBadge').innerText = `梯次：${currentBatch}`;
+    document.getElementById('btnSubmissionLink').href = CONFIG.SUBMISSION_FORM_URL;
+    document.getElementById('btnReplayLink').href = CONFIG.LMS_REPLAY_URL;
+
+    // 身分判定：網址帶入 vs 手動輸入
+    const autoIdentifiedBox = document.getElementById('autoIdentifiedBox');
+    const manualInputBox = document.getElementById('manualInputBox');
+    const autoEmpIdDisplay = document.getElementById('autoEmpIdDisplay');
+    const inputEmpId = document.getElementById('inputEmpId');
+    const savedTag = document.getElementById('savedTag');
+
+    let activeEmpId = "";
+
+    if (paramUser) {
+      activeEmpId = paramUser.trim();
+      localStorage.setItem('yfy_ai_club_emp_id', activeEmpId);
+      autoIdentifiedBox.classList.remove('hidden');
+      manualInputBox.classList.add('hidden');
+      autoEmpIdDisplay.innerText = `持有人：${activeEmpId}`;
+    } else {
+      const rememberedEmpId = localStorage.getItem('yfy_ai_club_emp_id');
+      if (rememberedEmpId) {
+        inputEmpId.value = rememberedEmpId;
+        savedTag.classList.remove('hidden');
+      }
+    }
+
+    // ==========================================
+    // 2. Google 試算表非同步數據記錄
+    // ==========================================
+    function logToGoogleSheet(actionEvent, detail, empId) {
+      if (!CONFIG.GAS_ENDPOINT_URL || CONFIG.GAS_ENDPOINT_URL.includes("AKfycby...")) {
+        console.log("[本地模擬記錄]", { currentBatch, empId, actionEvent, detail });
+        return;
+      }
+
+      const trackingUrl = `${CONFIG.GAS_ENDPOINT_URL}?batch=${encodeURIComponent(currentBatch)}&topic=${encodeURIComponent(currentTopic)}&action=${encodeURIComponent(actionEvent)}&detail=${encodeURIComponent(detail)}&user=${encodeURIComponent(empId || "訪客_未填工號")}`;
+      
+      try {
+        fetch(trackingUrl, { mode: 'no-cors' });
+      } catch (err) {
+        const img = new Image();
+        img.src = trackingUrl;
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      logToGoogleSheet("開啟測驗頁面", "點擊電子報進入", activeEmpId || inputEmpId.value || "訪客_未填工號");
+    });
+
+    // ==========================================
+    // 3. 題庫與深度知識資料庫（含三大實戰 Prompt）
+    // ==========================================
+    const quizQuestions = [
+      {
+        question: "1. 出發前一晚，你通常如何準備旅行？",
+        options: [
+          { label: "A. 提前做好 Excel 或 Notion，精準到每小時動線與備案", type: "PLANNER" },
+          { label: "B. 只訂好機票與前兩晚住宿，其他看當天心情與天氣再說", type: "WANDERER" }
+        ]
+      },
+      {
+        question: "2. 抵達景點時，突然遇上午後暴雨行程全泡湯，你的直覺是？",
+        options: [
+          { label: "A. 鑽進旁邊看起來舒服的文青老宅咖啡館放空看雨", type: "WANDERER" },
+          { label: "B. 立即打開手機搜尋附近室內備案：在地市集、美術館或必吃小吃", type: "FOODIE" }
+        ]
+      },
+      {
+        question: "3. 在旅途中，最能讓你打從心底感到充飽電的時刻是？",
+        options: [
+          { label: "A. 走進在地巷弄，吃到一口驚為天人的道地私房招牌菜", type: "FOODIE" },
+          { label: "B. 依序踩完所有預定必拍的經典打卡點，記憶卡收穫滿滿", type: "PLANNER" }
+        ]
+      }
+    ];
+
+    const quizPersonas = {
+      PLANNER: {
+        emoji: "⚡",
+        title: "效率特種兵 ‧ 節奏掌控大師",
+        tag: "高效實踐型旅人",
+        desc: "出門絕不浪費一分一秒！你具備極強的規劃力與掌控力。阿杰老師課堂重點提醒：將繁瑣的交通轉乘與比價交給 AI，你就能把腦力完全留給風景！",
+        protip: "課堂秘訣：將想去的 4 個 Google 地點名稱丟給 Gemini，要求『排出不走回頭路順遊表格，並列出地鐵搭乘方向與預估步行分鐘數』，省下 80% 查地圖時間！",
+        prompts: [
+          {
+            title: "【技法① 順遊排程】",
+            subtitle: "避免折返跑的極速動線規劃",
+            text: "「請擔任我的專業旅遊規劃管家。我預計前往【城市名稱】進行【天數】天旅行。主要想造訪的景點包含：【地點A、地點B、地點C】。\n請幫我規劃順路不走回頭路的每日動線，並以 Markdown 表格呈現，欄位包含：[時間時段]、[推薦景點/活動]、[建議停留時長]、[交通轉乘方式與預估步行時間]、[順遊順路周邊小點]。」"
+          },
+          {
+            title: "【技法② 私房防踩雷】",
+            subtitle: "排隊名店效率快篩與避坑指南",
+            text: "「針對【目的地/餐廳景點】，請搜尋在地 Google Maps 評價高於 4.3 星、但能避開大量遊覽車觀光客的替代方案。\n請分析該景點的【最佳造訪時段】、【排隊避峰技巧】與【常見遊客踩雷負評重點】，讓我能精準掌握參觀節奏。」"
+          },
+          {
+            title: "【技法③ 突發應變】",
+            subtitle: "交通停駛或雨天室內備案轉換",
+            text: "「我目前在【所在位置/車站】，因【突發原因：如大雨/交通停駛】行程取消。請立即推薦 3 個距離我步行 15 分鐘或大眾運輸 10 分鐘內可抵達的【室內優質替代備案】（如在地特色室內市集、特色選物店、美術館），並附上現在營業狀態與動線建議。」"
+          }
+        ]
+      },
+      WANDERER: {
+        emoji: "☕",
+        title: "漫遊靈感派 ‧ 街角氛圍採集者",
+        tag: "沉浸生活型旅人",
+        desc: "對你而言，放空就是最好的充電。你不在意有沒有踩遍觀光景點，更享受走進無名巷弄、坐在街角喝杯咖啡。AI 能成為你的私人文化嚮導！",
+        protip: "課堂秘訣：對 Gemini 下指令時加上『請以當地獨立書店店員或散步作家的視角推薦』，AI 產出的語氣與私房景點會比一般觀光推薦深刻數倍！",
+        prompts: [
+          {
+            title: "【技法① 慢活漫步】",
+            subtitle: "避開打卡人潮的文青生活動線",
+            text: "「請扮演一位定居【城市名稱】多年的文化散步作家。請為我推薦一條 2~3 小時的慢活散步路線，避開大批觀光團。\n請包含：1 處靜謐的老宅咖啡館、1 間在地獨立書店或文創選物店、以及一條適合午後漫步拍照的安靜巷弄，並描述每個地點獨特的在地氛圍。」"
+          },
+          {
+            title: "【技法② 在地生活感】",
+            subtitle: "融入日常市場與在地人節奏",
+            text: "「我想體驗【城市/區域】當地居民的真實早晨生活。請推薦清晨到中午適合探訪的在地傳統市場或社區公園，並告訴我當地人最常吃的庶民早點是什麼？該如何點餐才像在地人？」"
+          },
+          {
+            title: "【技法③ 靈感紀錄】",
+            subtitle: "生成專屬旅行日記與生活圖卡文案",
+            text: "「我今天在【地點】體驗了【經歷的場景，例如在老街喝了手沖咖啡、遇見可愛街貓】。請用溫暖、細膩、富有生活儀式感的筆觸，幫我寫一段 100 字的旅行手帳日記，並提煉出一句適合作為 IG/社群圖卡封面的生活金句。」"
+          }
+        ]
+      },
+      FOODIE: {
+        emoji: "🍜",
+        title: "美食雷達派 ‧ 巷弄味蕾偵探",
+        tag: "味覺探索型旅人",
+        desc: "「景點可以沒看到，在地招牌絕對不能沒吃到！」旅遊對你來說就是一場盛大的美食探險。阿杰老師課堂的多模態圖片辨識，就是你最強大的點餐外掛！",
+        protip: "課堂秘訣：出國遇到沒有中文的外國菜單時，直接用手機拍下菜單傳給 Gemini，附上咒語『請翻譯成中文並標註店內招牌與可能過敏原』，零秒通關！",
+        prompts: [
+          {
+            title: "【技法① 巷弄覓食】",
+            subtitle: "在地居民排隊隱藏版美食快篩",
+            text: "「我目前在【所在城市或地鐵站】。請推薦步行 10-15 分鐘內、在地居民經常光顧且 Google 評分 4.2 星以上（且評論數具公信力）的 3 家道地平民美食。\n請分別說明：該店必點的招牌菜色、在地人才知道的吃法搭配，以及大約消費價位。」"
+          },
+          {
+            title: "【技法② 多模態翻譯】",
+            subtitle: "外語菜單與特殊食材拍照解析",
+            text: "「（上傳菜單照片）這是我在【國家/城市】餐廳拍下的菜單。請幫我將內容翻譯成繁體中文，挑出本店最受好評的前 3 道必吃招牌菜，並特別註明是否有【辣度 / 牛肉 / 海鮮 / 堅果】成分，以及點餐時可以直接使用的道地外語短句。」"
+          },
+          {
+            title: "【技法③ 伴手禮避坑】",
+            subtitle: "拒絕觀光客代工品的私房名產",
+            text: "「請推薦造訪【城市名稱】時，在地人認可、具有代表性且真正好吃的 3 款伴手禮或食材醬料（避開觀光區批發同質化商品）。\n請提供推薦購買的店家名稱、保存期限注意事項，以及送長輩或同事最體面的款式。」"
+          }
+        ]
+      }
+    };
+
+    // ==========================================
+    // 4. 測驗操作與渲染邏輯
+    // ==========================================
+    let currentStep = 0;
+    let scores = { PLANNER: 0, WANDERER: 0, FOODIE: 0 };
+    let activePersonaKey = "WANDERER";
+    let activeTabIndex = 0;
+
+    const screenIntro = document.getElementById('screenIntro');
+    const screenQuiz = document.getElementById('screenQuiz');
+    const screenResult = document.getElementById('screenResult');
+
+    document.getElementById('btnStart').addEventListener('click', () => {
+      if (!activeEmpId) {
+        const val = inputEmpId.value.trim();
+        if (!val) {
+          document.getElementById('idError').classList.remove('hidden');
+          return;
+        }
+        document.getElementById('idError').classList.add('hidden');
+        activeEmpId = val;
+        localStorage.setItem('yfy_ai_club_emp_id', activeEmpId);
+      }
+
+      logToGoogleSheet("開始測驗", "同仁啟動測驗", activeEmpId);
+
+      screenIntro.classList.add('hidden');
+      screenQuiz.classList.remove('hidden');
+      renderQuestion();
+    });
+
+    function renderQuestion() {
+      const q = quizQuestions[currentStep];
+      document.getElementById('questionStep').innerText = `QUESTION ${currentStep + 1} / ${quizQuestions.length}`;
+      document.getElementById('questionText').innerText = q.question;
+      document.getElementById('progressBar').style.width = `${((currentStep + 1) / quizQuestions.length) * 100}%`;
+
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = "";
+
+      q.options.forEach((opt) => {
+        const btn = document.createElement('button');
+        btn.className = "quiz-option w-full text-left p-3.5 sm:p-4 rounded-xl bg-white/10 border border-white/10 text-slate-200 text-xs sm:text-sm font-medium hover:text-white flex items-center justify-between";
+        btn.innerHTML = `<span>${opt.label}</span><span class="text-pink-400 font-bold ml-2">→</span>`;
+        btn.onclick = () => selectOption(opt.type);
+        container.appendChild(btn);
+      });
+    }
+
+    function selectOption(type) {
+      scores[type] = (scores[type] || 0) + 1;
+      currentStep++;
+
+      if (currentStep < quizQuestions.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      screenQuiz.classList.add('hidden');
+      screenResult.classList.remove('hidden');
+
+      let finalType = "WANDERER";
+      let maxScore = -1;
+      for (const [key, val] of Object.entries(scores)) {
+        if (val > maxScore) {
+          maxScore = val;
+          finalType = key;
+        }
+      }
+      activePersonaKey = finalType;
+
+      const res = quizPersonas[finalType];
+      document.getElementById('resEmoji').innerText = res.emoji;
+      document.getElementById('resTag').innerText = res.tag;
+      document.getElementById('resTitle').innerText = res.title;
+      document.getElementById('resDesc').innerText = res.desc;
+      document.getElementById('resProTip').innerText = res.protip;
+      document.getElementById('resOwnerBadge').innerText = `報告持有人：${activeEmpId}`;
+
+      switchTab(0);
+
+      try {
+        confetti({ particleCount: 70, spread: 80, origin: { y: 0.6 } });
+      } catch (e) {}
+
+      logToGoogleSheet("完成測驗解鎖盲盒", res.title, activeEmpId);
+    }
+
+    // ==========================================
+    // 5. 錦囊 Tab 切換與複製
+    // ==========================================
+    window.switchTab = function(index) {
+      activeTabIndex = index;
+      const persona = quizPersonas[activePersonaKey];
+      const promptObj = persona.prompts[index];
+
+      [0, 1, 2].forEach(i => {
+        const btn = document.getElementById(`tab${i}`);
+        if (i === index) {
+          btn.classList.add('active');
+          btn.classList.remove('text-slate-300');
+        } else {
+          btn.classList.remove('active');
+          btn.classList.add('text-slate-300');
+        }
+      });
+
+      document.getElementById('tabSubtitle').innerText = `${promptObj.title} ${promptObj.subtitle}`;
+      document.getElementById('resPromptBox').innerText = promptObj.text;
+    };
+
+    document.getElementById('btnCopyPrompt').addEventListener('click', () => {
+      const text = document.getElementById('resPromptBox').innerText;
+      const copyArea = document.createElement('textarea');
+      copyArea.value = text;
+      document.body.appendChild(copyArea);
+      copyArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(copyArea);
+
+      const btnText = document.getElementById('copyBtnText');
+      btnText.innerText = "已複製當前咒語！";
+      setTimeout(() => { btnText.innerText = "一鍵複製當前咒語"; }, 2000);
+
+      const persona = quizPersonas[activePersonaKey];
+      logToGoogleSheet("複製AI咒語", `${persona.title} - 錦囊${activeTabIndex + 1}`, activeEmpId);
+    });
+
+    document.getElementById('btnSubmissionLink').addEventListener('click', () => {
+      logToGoogleSheet("點擊徵件投稿", "前往投稿搶500元", activeEmpId);
+    });
+
+    document.getElementById('btnReplayLink').addEventListener('click', () => {
+      logToGoogleSheet("點擊LMS回放", "前往LMS補課", activeEmpId);
+    });
+
+    document.getElementById('btnRestart').addEventListener('click', () => {
+      currentStep = 0;
+      scores = { PLANNER: 0, WANDERER: 0, FOODIE: 0 };
+      screenResult.classList.add('hidden');
+      screenQuiz.classList.remove('hidden');
+      renderQuestion();
+    });
+  </script>
+</body>
+</html>
