@@ -122,7 +122,7 @@
           </span>
           <span class="text-[10px] bg-emerald-500/20 px-2 py-0.5 rounded-md border border-emerald-400/30">免手動輸入</span>
         </div>
-        <p class="text-white font-mono text-sm font-bold" id="autoEmpIdDisplay">
+        <p class="text-white text-sm font-bold flex items-center gap-2" id="autoEmpIdDisplay">
           持有人：載入中...
         </p>
         <p class="text-[11px] text-slate-300">
@@ -165,7 +165,7 @@
       </div>
 
       <div class="bg-white/5 rounded-2xl p-4 sm:p-5 border border-white/10">
-        <h2 id="questionText" class="text-base sm:text-lg font-bold text-white leading-snug">
+        <h2 id="questionText" class="text-base sm:lg font-bold text-white leading-snug">
           題目載入中...
         </h2>
       </div>
@@ -247,10 +247,10 @@
 
       <!-- 課後成果轉化：雙軌行動按鈕 -->
       <div class="space-y-2.5 pt-1">
-        <a id="btnSubmissionLink" href="https://forms.office.com" target="_blank" class="block w-full text-center py-3.5 px-5 rounded-2xl font-black text-sm text-white bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:opacity-90 shadow-lg shadow-pink-500/20 transition">
+        <a id="btnSubmissionLink" href="https://sites.google.com/view/yfy-ai-club" target="_blank" class="block w-full text-center py-3.5 px-5 rounded-2xl font-black text-sm text-white bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:opacity-90 shadow-lg shadow-pink-500/20 transition">
           🚀 產出旅遊圖卡 ＆ 投稿搶 500 元禮券 (收件至 10/29) ↗
         </a>
-        <a id="btnReplayLink" href="https://lms.yfy.com" target="_blank" class="block w-full text-center py-2.5 px-4 rounded-xl font-medium text-xs text-slate-300 bg-white/10 hover:bg-white/15 border border-white/10 transition">
+        <a id="btnReplayLink" href="https://lms.yfy.com/eHRD/" target="_blank" class="block w-full text-center py-2.5 px-4 rounded-xl font-medium text-xs text-slate-300 bg-white/10 hover:bg-white/15 border border-white/10 transition">
           📺 沒跟到直播？前往 LMS 觀看 10 月阿杰老師精華回放 ↗
         </a>
         <button id="btnRestart" class="w-full text-center py-1.5 text-xs text-slate-400 hover:text-slate-200 transition">
@@ -268,19 +268,20 @@
 
   <script>
     // ==========================================
-    // 1. 核心參數與外部連結設定
+    // 1. 核心參數與正式外部連結設定
     // ==========================================
     const CONFIG = {
-      // 請替換為您部署的 Google Apps Script Web App URL
-      GAS_ENDPOINT_URL: "https://script.google.com/macros/s/AKfycbzlTHXF1NXYDxX85lGZK--Cjq-hN5b-YUhP928uPhrSMne0lgY4K6Tesi09wO5v2llz/exec", 
-      // 10 月實踐徵件表單
-      SUBMISSION_FORM_URL: "https://forms.office.com/r/your-submission-form",
-      // 10 月 LMS 精華回放課程網址
-      LMS_REPLAY_URL: "https://lms.yfy.com/course/view.php?id=your-course-id"
+      // Google Apps Script 後台接收端
+      GAS_ENDPOINT_URL: "https://script.google.com/macros/s/AKfycbw5qnLfoRebzDEdkuAEnGtEBFdMK7LtLtJc4kiFLF4ewzwUV2LnAjxohwBzej8ao_5g/exec", 
+      // 10 月實踐徵件專區（Google Sites）
+      SUBMISSION_FORM_URL: "https://sites.google.com/view/yfy-ai-club",
+      // 10 月 LMS 精華回放課程網址（eHRD）
+      LMS_REPLAY_URL: "https://lms.yfy.com/eHRD/"
     };
 
     const urlParams = new URLSearchParams(window.location.search);
     const paramUser = urlParams.get('user') || urlParams.get('id') || urlParams.get('emp_id') || "";
+    const paramName = urlParams.get('name') || urlParams.get('cname') || "";
     const currentBatch = urlParams.get('batch') || urlParams.get('group') || "全體推播";
     const currentTopic = urlParams.get('topic') || "10月旅遊性格盲盒";
 
@@ -296,31 +297,52 @@
     const savedTag = document.getElementById('savedTag');
 
     let activeEmpId = "";
+    let activeEmpName = "";
 
     if (paramUser) {
       activeEmpId = paramUser.trim();
+      activeEmpName = paramName ? decodeURIComponent(paramName).trim() : "";
+      
       localStorage.setItem('yfy_ai_club_emp_id', activeEmpId);
+      if (activeEmpName) localStorage.setItem('yfy_ai_club_emp_name', activeEmpName);
+
       autoIdentifiedBox.classList.remove('hidden');
       manualInputBox.classList.add('hidden');
-      autoEmpIdDisplay.innerText = `持有人：${activeEmpId}`;
+      
+      // 友善姓名優先呈現
+      if (activeEmpName) {
+        autoEmpIdDisplay.innerHTML = `持有人：<span class="text-pink-300 font-black">${activeEmpName}</span> <span class="text-slate-400 font-mono text-xs font-normal">(${activeEmpId})</span>`;
+      } else {
+        autoEmpIdDisplay.innerText = `持有人：${activeEmpId}`;
+      }
     } else {
       const rememberedEmpId = localStorage.getItem('yfy_ai_club_emp_id');
+      const rememberedEmpName = localStorage.getItem('yfy_ai_club_emp_name') || "";
       if (rememberedEmpId) {
         inputEmpId.value = rememberedEmpId;
         savedTag.classList.remove('hidden');
+        if (rememberedEmpName) activeEmpName = rememberedEmpName;
       }
     }
 
+    // 取得用於顯示的標稱
+    function getDisplayName() {
+      if (activeEmpName && activeEmpId) return `${activeEmpName} (${activeEmpId})`;
+      if (activeEmpName) return activeEmpName;
+      if (activeEmpId) return activeEmpId;
+      return "同仁夥伴";
+    }
+
     // ==========================================
-    // 2. Google 試算表非同步數據記錄
+    // 2. Google 試算表非同步數據記錄（工號 + 姓名雙欄回傳）
     // ==========================================
-    function logToGoogleSheet(actionEvent, detail, empId) {
+    function logToGoogleSheet(actionEvent, detail, empId, empName) {
       if (!CONFIG.GAS_ENDPOINT_URL || CONFIG.GAS_ENDPOINT_URL.includes("AKfycby...")) {
-        console.log("[本地模擬記錄]", { currentBatch, empId, actionEvent, detail });
+        console.log("[本地模擬記錄]", { currentBatch, empId, empName, actionEvent, detail });
         return;
       }
 
-      const trackingUrl = `${CONFIG.GAS_ENDPOINT_URL}?batch=${encodeURIComponent(currentBatch)}&topic=${encodeURIComponent(currentTopic)}&action=${encodeURIComponent(actionEvent)}&detail=${encodeURIComponent(detail)}&user=${encodeURIComponent(empId || "訪客_未填工號")}`;
+      const trackingUrl = `${CONFIG.GAS_ENDPOINT_URL}?batch=${encodeURIComponent(currentBatch)}&topic=${encodeURIComponent(currentTopic)}&action=${encodeURIComponent(actionEvent)}&detail=${encodeURIComponent(detail)}&user=${encodeURIComponent(empId || "訪客_未填工號")}&name=${encodeURIComponent(empName || activeEmpName || "")}`;
       
       try {
         fetch(trackingUrl, { mode: 'no-cors' });
@@ -331,7 +353,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      logToGoogleSheet("開啟測驗頁面", "點擊電子報進入", activeEmpId || inputEmpId.value || "訪客_未填工號");
+      logToGoogleSheet("開啟測驗頁面", "點擊電子報進入", activeEmpId || inputEmpId.value || "訪客_未填工號", activeEmpName);
     });
 
     // ==========================================
@@ -460,7 +482,7 @@
         localStorage.setItem('yfy_ai_club_emp_id', activeEmpId);
       }
 
-      logToGoogleSheet("開始測驗", "同仁啟動測驗", activeEmpId);
+      logToGoogleSheet("開始測驗", "同仁啟動測驗", activeEmpId, activeEmpName);
 
       screenIntro.classList.add('hidden');
       screenQuiz.classList.remove('hidden');
@@ -516,7 +538,9 @@
       document.getElementById('resTitle').innerText = res.title;
       document.getElementById('resDesc').innerText = res.desc;
       document.getElementById('resProTip').innerText = res.protip;
-      document.getElementById('resOwnerBadge').innerText = `報告持有人：${activeEmpId}`;
+      
+      // 結果卡標註持有人（姓名優先）
+      document.getElementById('resOwnerBadge').innerText = `報告持有人：${getDisplayName()}`;
 
       switchTab(0);
 
@@ -524,7 +548,7 @@
         confetti({ particleCount: 70, spread: 80, origin: { y: 0.6 } });
       } catch (e) {}
 
-      logToGoogleSheet("完成測驗解鎖盲盒", res.title, activeEmpId);
+      logToGoogleSheet("完成測驗解鎖盲盒", res.title, activeEmpId, activeEmpName);
     }
 
     // ==========================================
@@ -564,15 +588,15 @@
       setTimeout(() => { btnText.innerText = "一鍵複製當前咒語"; }, 2000);
 
       const persona = quizPersonas[activePersonaKey];
-      logToGoogleSheet("複製AI咒語", `${persona.title} - 錦囊${activeTabIndex + 1}`, activeEmpId);
+      logToGoogleSheet("複製AI咒語", `${persona.title} - 錦囊${activeTabIndex + 1}`, activeEmpId, activeEmpName);
     });
 
     document.getElementById('btnSubmissionLink').addEventListener('click', () => {
-      logToGoogleSheet("點擊徵件投稿", "前往投稿搶500元", activeEmpId);
+      logToGoogleSheet("點擊徵件投稿", "前往投稿搶500元", activeEmpId, activeEmpName);
     });
 
     document.getElementById('btnReplayLink').addEventListener('click', () => {
-      logToGoogleSheet("點擊LMS回放", "前往LMS補課", activeEmpId);
+      logToGoogleSheet("點擊LMS回放", "前往LMS補課", activeEmpId, activeEmpName);
     });
 
     document.getElementById('btnRestart').addEventListener('click', () => {
