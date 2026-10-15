@@ -54,33 +54,32 @@
 
   <main class="w-full max-w-2xl mx-auto sunlight-card rounded-3xl overflow-hidden relative my-4">
     
-    <!-- 頂部 16:9 Banner 圖片 -->
-    <div class="relative w-full aspect-video overflow-hidden border-b border-sky-100 bg-sky-100">
-      <img 
-        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4NObnZDGmv7H7tol6W6P_d1smo4sjGEmhHUDd7SclnlaGe-wUMGJWKuqdDoDnEQnjfomYWG3ULnMGplmBEhsfwP55JEdT-35vkH3LEr7iD0-dGuTEMebMZF5ea-rhYuGh85lRzYDLYVDAua-QG3VGyYnXZ4dvUVuPzA3c26vbdWAADPJwwyWrfCj9ILk/s1600/LMS%E7%8F%AD%E7%B4%9A%E5%9C%96%E7%89%87_10%E6%9C%88%20v2%20EDM%E7%94%A8%2016%E6%AF%949%20JPG%E6%AA%94.jpg" 
-        alt="AI 智慧旅遊家 主視覺 Banner" 
-        class="w-full h-full object-cover object-center"
-      />
-      <div id="batchBadge" class="absolute top-3 right-3 text-[11px] px-2.5 py-1 rounded-full bg-slate-900/70 text-white backdrop-blur-md border border-white/30 font-medium">
-        識別載入中...
-      </div>
-    </div>
+    <!-- 頂部蔚藍天空光暈 -->
+    <div class="absolute -top-20 -left-20 w-56 h-56 bg-sky-300/40 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-20 -right-20 w-56 h-56 bg-amber-300/40 rounded-full blur-3xl pointer-events-none"></div>
 
     <!-- 內容容器 -->
-    <div class="p-5 sm:p-8 space-y-5">
+    <div class="p-5 sm:p-8 space-y-5 relative z-10">
+
+      <!-- Header 標題區 -->
+      <header class="text-center mb-2">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase bg-sky-100 text-sky-800 border border-sky-300 mb-2">
+          <span>✈️</span> AI Club ‧ AI 樂活・智造所
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-slate-900">
+          AI 智慧旅遊家 ‧ 命定盲盒
+        </h1>
+        <p class="text-slate-600 text-xs sm:text-sm mt-1">
+          10月主題專講 ‧ 解鎖阿杰老師私藏「Gemini 全能旅遊管家」提詞庫
+        </p>
+        <div id="batchBadge" class="mt-2 inline-block text-[11px] px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-700 border border-sky-200 font-medium">
+          識別載入中...
+        </div>
+      </header>
 
       <!-- SECTION 1: 測驗首頁與身分判定 -->
       <section id="screenIntro" class="text-center space-y-5">
         
-        <div class="space-y-1">
-          <h1 class="text-xl sm:text-2xl font-black tracking-tight text-slate-900">
-            ✈️ AI 智慧旅遊家 ‧ 命定盲盒
-          </h1>
-          <p class="text-slate-600 text-xs sm:text-sm">
-            回答 3 道靈感直覺題 ‧ 解鎖阿杰老師私藏「Gemini 全能旅遊管家」提詞庫
-          </p>
-        </div>
-
         <div class="floating-box my-1">
           <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl bg-gradient-to-tr from-sky-500 via-teal-400 to-amber-300 p-1 shadow-md shadow-sky-400/25 flex items-center justify-center">
             <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center text-3xl sm:text-4xl shadow-inner">
@@ -122,30 +121,31 @@
             </span>
             <span class="text-[10px] bg-emerald-200/60 text-emerald-900 px-2 py-0.5 rounded-md border border-emerald-400">免手動輸入</span>
           </div>
+          <!-- 此處將保證優先呈現姓名 -->
           <p class="text-slate-900 text-sm font-bold flex items-center gap-2" id="autoEmpIdDisplay">
             持有人：載入中...
           </p>
           <p class="text-[11px] text-slate-600">
-            系統已綁定您的專屬研習身分與禮品卡得獎序號，點擊即可直接啟動測驗！
+            系統已綁定您的專屬研習身分，點擊即可直接啟動測驗！
           </p>
         </div>
 
-        <!-- 模式 B：手動輸入備援（新增 @ 前綴說明） -->
+        <!-- 模式 B：手動輸入備援 -->
         <div id="manualInputBox" class="bg-white p-3.5 rounded-2xl border border-sky-200 shadow-sm space-y-2 text-left">
           <label for="inputEmpId" class="block text-xs font-bold text-sky-900 flex items-center justify-between">
-            <span>🎟️ 請輸入 9 碼工號 或 公司英文帳號（信箱 @ 前綴）：</span>
+            <span>🎟️ 請輸入姓名、工號或英文帳號：</span>
             <span id="savedTag" class="hidden text-[10px] text-emerald-600 font-normal">已自動記住</span>
           </label>
           <input 
             type="text" 
             id="inputEmpId" 
-            placeholder="例如：100123456 或 ming.wang（不需填 @yfy.com）" 
+            placeholder="例如：王大明、100123456 或 ming.wang" 
             class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition"
           />
           <div class="space-y-1 text-[11px] pt-0.5">
             <div class="flex items-center justify-between text-slate-500">
               <span>※ 英文帳號填寫信箱前綴即可（例如 ming.wang@yfy.com 請填 ming.wang）</span>
-              <span id="idError" class="hidden text-rose-600 font-bold">請填寫工號或英文帳號！</span>
+              <span id="idError" class="hidden text-rose-600 font-bold">請填寫姓名、工號或帳號！</span>
             </div>
             <div class="text-slate-400 text-[10px]">
               ※ 用於客製盲盒卡與活動研習紀錄核對
@@ -336,7 +336,7 @@
 
   <script>
     // ==========================================
-    // 1. 核心參數與正式外部連結設定
+    // 1. 核心參數與外部連結設定
     // ==========================================
     const CONFIG = {
       GAS_ENDPOINT_URL: "https://script.google.com/macros/s/AKfycbw5qnLfoRebzDEdkuAEnGtEBFdMK7LtLtJc4kiFLF4ewzwUV2LnAjxohwBzej8ao_5g/exec", 
@@ -345,8 +345,8 @@
     };
 
     const urlParams = new URLSearchParams(window.location.search);
-    const paramUser = urlParams.get('user') || urlParams.get('id') || urlParams.get('emp_id') || "";
-    const paramName = urlParams.get('name') || urlParams.get('cname') || "";
+    const rawUser = urlParams.get('user') || urlParams.get('id') || urlParams.get('emp_id') || "";
+    const rawName = urlParams.get('name') || urlParams.get('cname') || "";
     const currentBatch = urlParams.get('batch') || urlParams.get('group') || "全體推播";
     const currentTopic = urlParams.get('topic') || "10月旅遊性格盲盒";
 
@@ -360,53 +360,61 @@
     const inputEmpId = document.getElementById('inputEmpId');
     const savedTag = document.getElementById('savedTag');
 
-    let activeEmpId = "";
+    let activeEmpId = rawUser.trim();
     let activeEmpName = "";
 
-    // 清除舊快取中包含 222222222 或測試工號的干擾
+    // 智能解碼姓名（防止中文網址編碼或直接中文傳入造成解析失敗）
+    if (rawName) {
+      try {
+        activeEmpName = decodeURIComponent(rawName).trim();
+      } catch(e) {
+        activeEmpName = rawName.trim();
+      }
+    }
+
+    // 清理舊測試資料快取
     const cachedId = localStorage.getItem('yfy_ai_club_emp_id');
     if (cachedId === "222222222" || cachedId === "201902222") {
       localStorage.removeItem('yfy_ai_club_emp_id');
       localStorage.removeItem('yfy_ai_club_emp_name');
     }
 
-    if (paramUser) {
-      activeEmpId = paramUser.trim();
-      activeEmpName = paramName ? decodeURIComponent(paramName).trim() : "";
-      
-      localStorage.setItem('yfy_ai_club_emp_id', activeEmpId);
-      if (activeEmpName) localStorage.setItem('yfy_ai_club_emp_name', activeEmpName);
-
+    // 身分判定：只要有帶姓名或工號，立刻啟動自動通行
+    if (activeEmpName || activeEmpId) {
       autoIdentifiedBox.classList.remove('hidden');
       manualInputBox.classList.add('hidden');
       
+      // ✨【關鍵核心】：優先顯示姓名，絕不顯示工號
       if (activeEmpName) {
-        autoEmpIdDisplay.innerHTML = `持有人：<span class="text-sky-700 font-black">${activeEmpName}</span> <span class="text-slate-500 font-mono text-xs font-normal">(${activeEmpId})</span>`;
+        autoEmpIdDisplay.innerHTML = `持有人：<span class="text-sky-700 font-black text-base">${activeEmpName}</span>`;
       } else {
-        autoEmpIdDisplay.innerText = `持有人：${activeEmpId}`;
+        autoEmpIdDisplay.innerHTML = `持有人：<span class="text-sky-700 font-black text-base">${activeEmpId}</span>`;
       }
+
+      localStorage.setItem('yfy_ai_club_emp_id', activeEmpId);
+      if (activeEmpName) localStorage.setItem('yfy_ai_club_emp_name', activeEmpName);
     } else {
-      const rememberedEmpId = localStorage.getItem('yfy_ai_club_emp_id');
       const rememberedEmpName = localStorage.getItem('yfy_ai_club_emp_name') || "";
-      if (rememberedEmpId) {
-        inputEmpId.value = rememberedEmpId;
+      const rememberedEmpId = localStorage.getItem('yfy_ai_club_emp_id') || "";
+      if (rememberedEmpName || rememberedEmpId) {
+        inputEmpId.value = rememberedEmpName || rememberedEmpId;
         savedTag.classList.remove('hidden');
-        if (rememberedEmpName) activeEmpName = rememberedEmpName;
+        activeEmpName = rememberedEmpName;
+        activeEmpId = rememberedEmpId;
       }
     }
 
+    // 取得報告持有人顯示文字（純姓名優先）
     function getDisplayName() {
-      if (activeEmpName && activeEmpId) return `${activeEmpName} (${activeEmpId})`;
       if (activeEmpName) return activeEmpName;
       if (activeEmpId) return activeEmpId;
       return "同仁夥伴";
     }
 
-    function logToGoogleSheet(actionEvent, detail, empId, empName) {
-      if (!CONFIG.GAS_ENDPOINT_URL || CONFIG.GAS_ENDPOINT_URL.includes("AKfycby...")) {
-        return;
-      }
-      const trackingUrl = `${CONFIG.GAS_ENDPOINT_URL}?batch=${encodeURIComponent(currentBatch)}&topic=${encodeURIComponent(currentTopic)}&action=${encodeURIComponent(actionEvent)}&detail=${encodeURIComponent(detail)}&user=${encodeURIComponent(empId || "訪客_未填工號")}&name=${encodeURIComponent(empName || activeEmpName || "")}`;
+    // 後台試算表非同步記錄（姓名與工號依然完整傳輸到後台）
+    function logToGoogleSheet(actionEvent, detail) {
+      if (!CONFIG.GAS_ENDPOINT_URL || CONFIG.GAS_ENDPOINT_URL.includes("AKfycby...")) return;
+      const trackingUrl = `${CONFIG.GAS_ENDPOINT_URL}?batch=${encodeURIComponent(currentBatch)}&topic=${encodeURIComponent(currentTopic)}&action=${encodeURIComponent(actionEvent)}&detail=${encodeURIComponent(detail)}&user=${encodeURIComponent(activeEmpId || "訪客")}&name=${encodeURIComponent(activeEmpName || "")}`;
       try {
         fetch(trackingUrl, { mode: 'no-cors' });
       } catch (err) {
@@ -416,7 +424,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      logToGoogleSheet("開啟測驗頁面", "點擊電子報進入", activeEmpId || inputEmpId.value || "訪客_未填工號", activeEmpName);
+      logToGoogleSheet("開啟測驗頁面", "點擊電子報進入");
     });
 
     const quizQuestions = [
@@ -528,18 +536,22 @@
     const screenResult = document.getElementById('screenResult');
 
     document.getElementById('btnStart').addEventListener('click', () => {
-      if (!activeEmpId) {
+      if (!activeEmpName && !activeEmpId) {
         const val = inputEmpId.value.trim();
         if (!val) {
           document.getElementById('idError').classList.remove('hidden');
           return;
         }
         document.getElementById('idError').classList.add('hidden');
-        activeEmpId = val;
-        localStorage.setItem('yfy_ai_club_emp_id', activeEmpId);
+        // 手動輸入若為純數字視為工號，否則視為姓名
+        if (/^\d+$/.test(val)) {
+          activeEmpId = val;
+        } else {
+          activeEmpName = val;
+        }
       }
 
-      logToGoogleSheet("開始測驗", "同仁啟動測驗", activeEmpId, activeEmpName);
+      logToGoogleSheet("開始測驗", "同仁啟動測驗");
 
       screenIntro.classList.add('hidden');
       screenQuiz.classList.remove('hidden');
@@ -596,6 +608,7 @@
       document.getElementById('resDesc').innerText = res.desc;
       document.getElementById('resProTip').innerText = res.protip;
       
+      // 結果卡標註持有人（純姓名呈現）
       document.getElementById('resOwnerBadge').innerText = `報告持有人：${getDisplayName()}`;
 
       switchTab(0);
@@ -604,7 +617,7 @@
         confetti({ particleCount: 70, spread: 80, origin: { y: 0.6 } });
       } catch (e) {}
 
-      logToGoogleSheet("完成測驗解鎖盲盒", res.title, activeEmpId, activeEmpName);
+      logToGoogleSheet("完成測驗解鎖盲盒", res.title);
     }
 
     window.switchTab = function(index) {
@@ -641,15 +654,15 @@
       setTimeout(() => { btnText.innerText = "一鍵複製當前咒語"; }, 2000);
 
       const persona = quizPersonas[activePersonaKey];
-      logToGoogleSheet("複製AI咒語", `${persona.title} - 錦囊${activeTabIndex + 1}`, activeEmpId, activeEmpName);
+      logToGoogleSheet("複製AI咒語", `${persona.title} - 錦囊${activeTabIndex + 1}`);
     });
 
     document.getElementById('btnSubmissionLink').addEventListener('click', () => {
-      logToGoogleSheet("點擊徵件投稿", "前往投稿搶500元", activeEmpId, activeEmpName);
+      logToGoogleSheet("點擊徵件投稿", "前往投稿搶500元");
     });
 
     document.getElementById('btnReplayLink').addEventListener('click', () => {
-      logToGoogleSheet("點擊LMS回放", "前往LMS補課", activeEmpId, activeEmpName);
+      logToGoogleSheet("點擊LMS回放", "前往LMS補課");
     });
 
     document.getElementById('btnRestart').addEventListener('click', () => {
