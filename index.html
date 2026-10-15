@@ -9,13 +9,13 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
     body {
-      font-family: 'Noto Sans TC', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
       background: linear-gradient(165deg, #0284c7 0%, #38bdf8 35%, #bae6fd 70%, #fef3c7 100%);
       min-height: 100vh;
       color: #0f172a;
@@ -54,23 +54,21 @@
 
   <main class="w-full max-w-2xl mx-auto sunlight-card rounded-3xl overflow-hidden relative my-4">
     
-    <!-- 頂部蔚藍天空光暈 -->
     <div class="absolute -top-20 -left-20 w-56 h-56 bg-sky-300/40 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-20 -right-20 w-56 h-56 bg-amber-300/40 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- 內容容器 -->
     <div class="p-5 sm:p-8 space-y-5 relative z-10">
 
-      <!-- Header 標題區 -->
+      <!-- Header 標題區 (聚焦 10/23 專講強效引流) -->
       <header class="text-center mb-2">
         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase bg-sky-100 text-sky-800 border border-sky-300 mb-2">
-          <span>✈️</span> AI Club ‧ AI 樂活・智造所
+          <span>✈️</span> AI Club ‧ 10月強檔主題專講
         </div>
         <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-slate-900">
           AI 智慧旅遊家 ‧ 命定盲盒
         </h1>
         <p class="text-slate-600 text-xs sm:text-sm mt-1">
-          10月主題專講 ‧ 解鎖阿杰老師私藏「Gemini 全能旅遊管家」提詞庫
+          10/23 (五) 15:30 開講 ‧ 3 題解鎖旅人 DNA ＆ 搶先登記報名阿杰老師專講
         </p>
         <div id="batchBadge" class="mt-2 inline-block text-[11px] px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-700 border border-sky-200 font-medium">
           識別載入中...
@@ -91,7 +89,7 @@
         <!-- 學習亮點整理卡 -->
         <div class="bg-sky-50/70 rounded-2xl p-4 border border-sky-100 text-slate-700 text-xs sm:text-sm leading-relaxed text-left space-y-2">
           <p class="flex items-center gap-2 font-bold text-sky-950 text-sm">
-            <span>✨</span> 一起 AI 旅行！專屬解鎖內容：
+            <span>✨</span> 10/23 專講必看亮點 ＆ 盲盒解鎖內容：
           </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
             <div class="bg-white p-2.5 rounded-xl border border-sky-100 shadow-sm">
@@ -99,7 +97,7 @@
               <p class="text-slate-500 mt-0.5">洞察出遊盲點與神級隊友定位</p>
             </div>
             <div class="bg-white p-2.5 rounded-xl border border-sky-100 shadow-sm">
-              <span class="font-bold text-amber-600">② 3 組阿杰老師咒語</span>
+              <span class="font-bold text-amber-600">② 3 組課前私房咒語</span>
               <p class="text-slate-500 mt-0.5">順遊排程、排隊美食、突發救急</p>
             </div>
             <div class="bg-white p-2.5 rounded-xl border border-sky-100 shadow-sm">
@@ -107,8 +105,8 @@
               <p class="text-slate-500 mt-0.5">免寫代碼一鍵轉成精美互動手冊</p>
             </div>
             <div class="bg-white p-2.5 rounded-xl border border-sky-100 shadow-sm">
-              <span class="font-bold text-emerald-600">④ 投稿搶 500 元禮券</span>
-              <p class="text-slate-500 mt-0.5">實作成果投件，人人有機會拿獎金</p>
+              <span class="font-bold text-emerald-600">④ 揪團搶限量禮卡</span>
+              <p class="text-slate-500 mt-0.5">號召同仁上線前三名獨享大獎</p>
             </div>
           </div>
         </div>
@@ -121,25 +119,24 @@
             </span>
             <span class="text-[10px] bg-emerald-200/60 text-emerald-900 px-2 py-0.5 rounded-md border border-emerald-400">免手動輸入</span>
           </div>
-          <!-- 此處將保證優先呈現姓名 -->
           <p class="text-slate-900 text-sm font-bold flex items-center gap-2" id="autoEmpIdDisplay">
             持有人：載入中...
           </p>
           <p class="text-[11px] text-slate-600">
-            系統已綁定您的專屬研習身分，點擊即可直接啟動測驗！
+            系統已綁定您的專屬研習身分，完成 3 題即可解鎖專屬盲盒並快速卡位 10/23 專講！
           </p>
         </div>
 
         <!-- 模式 B：手動輸入備援 -->
         <div id="manualInputBox" class="bg-white p-3.5 rounded-2xl border border-sky-200 shadow-sm space-y-2 text-left">
           <label for="inputEmpId" class="block text-xs font-bold text-sky-900 flex items-center justify-between">
-            <span>🎟️ 請輸入姓名、工號或英文帳號：</span>
+            <span>🎟️ 請輸入姓名、工號或公司英文帳號：</span>
             <span id="savedTag" class="hidden text-[10px] text-emerald-600 font-normal">已自動記住</span>
           </label>
           <input 
             type="text" 
             id="inputEmpId" 
-            placeholder="例如：王大明、100123456 或 ming.wang" 
+            placeholder="例如：王大明 或 ming.wang（不需填 @yfy.com）" 
             class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition"
           />
           <div class="space-y-1 text-[11px] pt-0.5">
@@ -148,7 +145,7 @@
               <span id="idError" class="hidden text-rose-600 font-bold">請填寫姓名、工號或帳號！</span>
             </div>
             <div class="text-slate-400 text-[10px]">
-              ※ 用於客製盲盒卡與活動研習紀錄核對
+              ※ 用於客製盲盒卡與 10/23 專講出席抽獎紀錄核對
             </div>
           </div>
         </div>
@@ -181,7 +178,6 @@
       <!-- SECTION 3: 測驗結果與深度學習錦囊頁 -->
       <section id="screenResult" class="hidden space-y-5">
         
-        <!-- 結果主卡片 -->
         <div class="bg-gradient-to-b from-sky-50 to-white border border-sky-200 rounded-2xl p-5 sm:p-6 text-center space-y-3 relative overflow-hidden shadow-sm">
           <div class="text-5xl my-1" id="resEmoji">🏖️</div>
           
@@ -203,7 +199,7 @@
           </div>
         </div>
 
-        <!-- 核心學習模組：三大實戰錦囊 (Tab 切換) -->
+        <!-- 三大實戰錦囊 -->
         <div class="bg-white border border-sky-200 rounded-2xl p-4 sm:p-5 text-left space-y-3 shadow-sm">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
             <div class="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-sky-900">
@@ -214,7 +210,6 @@
             </button>
           </div>
 
-          <!-- Tab 選項卡 -->
           <div class="flex gap-2">
             <button onclick="switchTab(0)" id="tab0" class="tab-btn active text-xs px-3 py-1.5 rounded-lg border border-slate-200 transition">
               ① 順遊排程指南
@@ -227,7 +222,6 @@
             </button>
           </div>
 
-          <!-- 提詞展示區 -->
           <div class="relative">
             <div class="text-[11px] text-sky-700 font-bold mb-1" id="tabSubtitle">
               【技法說明】：利用 Gemini 搭配地理定位，自動計算不繞路交通動線
@@ -237,7 +231,6 @@
             </pre>
           </div>
 
-          <!-- 阿杰老師重點備忘小卡 -->
           <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-[11px] text-amber-950 space-y-1">
             <div class="font-bold flex items-center gap-1 text-amber-800">
               <span>💡</span> 阿杰學長課堂私房秘訣：
@@ -248,17 +241,17 @@
           </div>
         </div>
 
-        <!-- 10月成果轉化行動按鈕 -->
+        <!-- 專講報名主要行動按鈕 (聚焦引流報名) -->
         <div class="space-y-2.5 pt-1">
-          <a id="btnSubmissionLink" href="https://sites.google.com/view/yfy-ai-club" target="_blank" class="block w-full text-center py-3.5 px-5 rounded-2xl font-black text-sm text-white bg-gradient-to-r from-amber-500 to-orange-500 hover:opacity-90 shadow-lg shadow-amber-500/25 transition">
-            🚀 產出旅遊圖卡 ＆ 投稿搶 500 元禮券 (收件至 10/29) ↗
+          <a id="btnRegistrationLink" href="https://docs.google.com/forms/d/e/1FAIpQLScEUY2QEVqwh81WTNtQ3UTDXfg8d2TSmiISDNKH89ocSGkRJA/viewform" target="_blank" class="block w-full text-center py-3.5 px-5 rounded-2xl font-black text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:opacity-90 shadow-lg shadow-orange-500/25 transition">
+            🎟️ 立即登記報名 10/23 (五) 阿杰老師專講 ＆ 搶限量禮物卡 ↗
           </a>
           <a id="btnReplayLink" href="https://lms.yfy.com/eHRD/" target="_blank" class="block w-full text-center py-2.5 px-4 rounded-xl font-medium text-xs text-sky-800 bg-sky-100 hover:bg-sky-200 border border-sky-200 transition">
-            📺 沒跟到直播？前往 LMS 觀看 10 月阿杰老師精華回放 ↗
+            📺 前往 LMS 觀看過往主題回放與先修課程 ↗
           </a>
         </div>
 
-        <!-- AI Club 跨檔期進行中任務模組 -->
+        <!-- 跨檔期進行中任務模組 -->
         <div class="bg-gradient-to-br from-slate-50 to-sky-50 border border-sky-200 rounded-2xl p-4 sm:p-5 text-left space-y-3 shadow-sm mt-3">
           <div class="border-b border-sky-200/80 pb-2">
             <h3 class="text-sm font-black text-slate-900 flex items-center gap-1.5">
@@ -266,7 +259,21 @@
             </h3>
           </div>
 
-          <!-- 任務 1：八月大選 -->
+          <div class="bg-white p-3 rounded-xl border border-sky-100 shadow-sm space-y-1">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-amber-600">【十月專講・揪團學】</span>
+              <span class="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full font-bold">10/23 15:30 開講</span>
+            </div>
+            <p class="text-xs text-slate-600">
+              阿杰學長帶您一鍵打造 AI 旅遊管家！號召同仁上線前三名獨享專屬禮物卡！
+            </p>
+            <div class="pt-1">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScEUY2QEVqwh81WTNtQ3UTDXfg8d2TSmiISDNKH89ocSGkRJA/viewform" target="_blank" class="inline-block text-xs font-bold text-amber-700 hover:text-amber-900 hover:underline">
+                👉 立即登記報名十月專講 ↗
+              </a>
+            </div>
+          </div>
+
           <div class="bg-white p-3 rounded-xl border border-sky-100 shadow-sm space-y-1">
             <div class="flex items-center justify-between text-xs">
               <span class="font-bold text-rose-600">【成果大選・投一票】</span>
@@ -282,7 +289,6 @@
             </div>
           </div>
 
-          <!-- 任務 2：九月曬短片 -->
           <div class="bg-white p-3 rounded-xl border border-sky-100 shadow-sm space-y-1">
             <div class="flex items-center justify-between text-xs">
               <span class="font-bold text-purple-600">【曬短片・拿五百】</span>
@@ -298,22 +304,6 @@
               <span class="text-slate-300">|</span>
               <a href="https://lms.yfy.com/eHRD/" target="_blank" class="text-slate-600 hover:text-slate-900 hover:underline">
                 登入 LMS 觀看回放 ↗
-              </a>
-            </div>
-          </div>
-
-          <!-- 任務 3：十月專講揪團 -->
-          <div class="bg-white p-3 rounded-xl border border-sky-100 shadow-sm space-y-1">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-bold text-amber-600">【十月專講・揪團學】</span>
-              <span class="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full font-bold">10/23 15:30 開講</span>
-            </div>
-            <p class="text-xs text-slate-600">
-              阿杰學長帶您一鍵打造 AI 旅遊管家！號召同仁上線前三名獨享專屬禮物卡！
-            </p>
-            <div class="pt-1">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLScEUY2QEVqwh81WTNtQ3UTDXfg8d2TSmiISDNKH89ocSGkRJA/viewform" target="_blank" class="inline-block text-xs font-bold text-amber-700 hover:text-amber-900 hover:underline">
-                👉 立即登記報名十月專講 ↗
               </a>
             </div>
           </div>
@@ -335,23 +325,20 @@
   </main>
 
   <script>
-    // ==========================================
-    // 1. 核心參數與外部連結設定
-    // ==========================================
     const CONFIG = {
       GAS_ENDPOINT_URL: "https://script.google.com/macros/s/AKfycbw5qnLfoRebzDEdkuAEnGtEBFdMK7LtLtJc4kiFLF4ewzwUV2LnAjxohwBzej8ao_5g/exec", 
-      SUBMISSION_FORM_URL: "https://sites.google.com/view/yfy-ai-club",
+      REGISTRATION_FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLScEUY2QEVqwh81WTNtQ3UTDXfg8d2TSmiISDNKH89ocSGkRJA/viewform",
       LMS_REPLAY_URL: "https://lms.yfy.com/eHRD/"
     };
 
     const urlParams = new URLSearchParams(window.location.search);
     const rawUser = urlParams.get('user') || urlParams.get('id') || urlParams.get('emp_id') || "";
     const rawName = urlParams.get('name') || urlParams.get('cname') || "";
-    const currentBatch = urlParams.get('batch') || urlParams.get('group') || "全體推播";
-    const currentTopic = urlParams.get('topic') || "10月旅遊性格盲盒";
+    const currentBatch = urlParams.get('batch') || urlParams.get('group') || "10月推播";
+    const currentTopic = urlParams.get('topic') || "10月AI旅遊專講引流";
 
     document.getElementById('batchBadge').innerText = `梯次：${currentBatch}`;
-    document.getElementById('btnSubmissionLink').href = CONFIG.SUBMISSION_FORM_URL;
+    document.getElementById('btnRegistrationLink').href = CONFIG.REGISTRATION_FORM_URL;
     document.getElementById('btnReplayLink').href = CONFIG.LMS_REPLAY_URL;
 
     const autoIdentifiedBox = document.getElementById('autoIdentifiedBox');
@@ -360,10 +347,12 @@
     const inputEmpId = document.getElementById('inputEmpId');
     const savedTag = document.getElementById('savedTag');
 
+    localStorage.removeItem('yfy_ai_club_emp_id');
+    localStorage.removeItem('yfy_ai_club_emp_name');
+
     let activeEmpId = rawUser.trim();
     let activeEmpName = "";
 
-    // 智能解碼姓名（防止中文網址編碼或直接中文傳入造成解析失敗）
     if (rawName) {
       try {
         activeEmpName = decodeURIComponent(rawName).trim();
@@ -372,46 +361,26 @@
       }
     }
 
-    // 清理舊測試資料快取
-    const cachedId = localStorage.getItem('yfy_ai_club_emp_id');
-    if (cachedId === "222222222" || cachedId === "201902222") {
-      localStorage.removeItem('yfy_ai_club_emp_id');
-      localStorage.removeItem('yfy_ai_club_emp_name');
-    }
-
-    // 身分判定：只要有帶姓名或工號，立刻啟動自動通行
-    if (activeEmpName || activeEmpId) {
+    if (activeEmpName) {
       autoIdentifiedBox.classList.remove('hidden');
       manualInputBox.classList.add('hidden');
-      
-      // ✨【關鍵核心】：優先顯示姓名，絕不顯示工號
-      if (activeEmpName) {
-        autoEmpIdDisplay.innerHTML = `持有人：<span class="text-sky-700 font-black text-base">${activeEmpName}</span>`;
-      } else {
-        autoEmpIdDisplay.innerHTML = `持有人：<span class="text-sky-700 font-black text-base">${activeEmpId}</span>`;
-      }
-
-      localStorage.setItem('yfy_ai_club_emp_id', activeEmpId);
-      if (activeEmpName) localStorage.setItem('yfy_ai_club_emp_name', activeEmpName);
-    } else {
-      const rememberedEmpName = localStorage.getItem('yfy_ai_club_emp_name') || "";
-      const rememberedEmpId = localStorage.getItem('yfy_ai_club_emp_id') || "";
-      if (rememberedEmpName || rememberedEmpId) {
-        inputEmpId.value = rememberedEmpName || rememberedEmpId;
-        savedTag.classList.remove('hidden');
-        activeEmpName = rememberedEmpName;
-        activeEmpId = rememberedEmpId;
-      }
+      autoEmpIdDisplay.innerHTML = `持有人：<span class="text-sky-700 font-black text-base">${activeEmpName}</span>`;
+    } else if (activeEmpId && !/^\d+$/.test(activeEmpId)) {
+      autoIdentifiedBox.classList.remove('hidden');
+      manualInputBox.classList.add('hidden');
+      autoEmpIdDisplay.innerHTML = `持有人：<span class="text-sky-700 font-black text-base">${activeEmpId}</span>`;
+    } else if (activeEmpId) {
+      autoIdentifiedBox.classList.remove('hidden');
+      manualInputBox.classList.add('hidden');
+      autoEmpIdDisplay.innerHTML = `持有人：<span class="text-sky-700 font-black text-base">研習同仁夥伴</span>`;
     }
 
-    // 取得報告持有人顯示文字（純姓名優先）
     function getDisplayName() {
       if (activeEmpName) return activeEmpName;
-      if (activeEmpId) return activeEmpId;
-      return "同仁夥伴";
+      if (activeEmpId && !/^\d+$/.test(activeEmpId)) return activeEmpId;
+      return "研習同仁夥伴";
     }
 
-    // 後台試算表非同步記錄（姓名與工號依然完整傳輸到後台）
     function logToGoogleSheet(actionEvent, detail) {
       if (!CONFIG.GAS_ENDPOINT_URL || CONFIG.GAS_ENDPOINT_URL.includes("AKfycby...")) return;
       const trackingUrl = `${CONFIG.GAS_ENDPOINT_URL}?batch=${encodeURIComponent(currentBatch)}&topic=${encodeURIComponent(currentTopic)}&action=${encodeURIComponent(actionEvent)}&detail=${encodeURIComponent(detail)}&user=${encodeURIComponent(activeEmpId || "訪客")}&name=${encodeURIComponent(activeEmpName || "")}`;
@@ -456,7 +425,7 @@
         emoji: "⚡",
         title: "效率特種兵 ‧ 節奏掌控大師",
         tag: "高效實踐型旅人",
-        desc: "出門絕不浪費一分一秒！你具備極強的規劃力與掌控力。阿杰老師課堂重點提醒：將繁瑣的交通轉乘與比價交給 AI，你就能把腦力完全留給風景！",
+        desc: "出門絕不浪費一分一秒！你具備極強的規劃力與掌控力。10/23 阿杰老師專講重點：將繁瑣的交通轉乘與比價交給 AI，把腦力 100% 留給風景！",
         protip: "課堂秘訣：將想去的 4 個 Google 地點名稱丟給 Gemini，要求『排出不走回頭路順遊表格，並列出地鐵搭乘方向與預估步行分鐘數』，省下 80% 查地圖時間！",
         prompts: [
           {
@@ -480,7 +449,7 @@
         emoji: "☕",
         title: "漫遊靈感派 ‧ 街角氛圍採集者",
         tag: "沉浸生活型旅人",
-        desc: "對你而言，放空就是最好的充電。你不在意有沒有踩遍觀光景點，更享受走進無名巷弄、坐在街角喝杯咖啡。AI 能成為你的私人文化嚮導！",
+        desc: "對你而言，放空就是最好的充電。你不在意有沒有踩遍觀光景點，更享受走進無名巷弄。10/23 專講將教你如何把 AI 變成專屬在地文化嚮導！",
         protip: "課堂秘訣：對 Gemini 下指令時加上『請以當地獨立書店店員或散步作家的視角推薦』，AI 產出的語氣與私房景點會比一般觀光推薦深刻數倍！",
         prompts: [
           {
@@ -504,7 +473,7 @@
         emoji: "🍜",
         title: "美食雷達派 ‧ 巷弄味蕾偵探",
         tag: "味覺探索型旅人",
-        desc: "「景點可以沒看到，在地招牌絕對不能沒吃到！」旅遊對你來說就是一場盛大的美食探險。阿杰老師課堂的多模態圖片辨識，就是你最強大的點餐外掛！",
+        desc: "「景點可以沒看到，在地招牌絕對不能沒吃到！」旅遊對你來說就是盛大的美食探險。10/23 專講阿杰老師的多模態拍照辨識，就是最強大的點餐外掛！",
         protip: "課堂秘訣：出國遇到沒有中文的外國菜單時，直接用手機拍下菜單傳給 Gemini，附上咒語『請翻譯成中文並標註店內招牌與可能過敏原』，零秒通關！",
         prompts: [
           {
@@ -543,7 +512,6 @@
           return;
         }
         document.getElementById('idError').classList.add('hidden');
-        // 手動輸入若為純數字視為工號，否則視為姓名
         if (/^\d+$/.test(val)) {
           activeEmpId = val;
         } else {
@@ -608,7 +576,6 @@
       document.getElementById('resDesc').innerText = res.desc;
       document.getElementById('resProTip').innerText = res.protip;
       
-      // 結果卡標註持有人（純姓名呈現）
       document.getElementById('resOwnerBadge').innerText = `報告持有人：${getDisplayName()}`;
 
       switchTab(0);
@@ -657,12 +624,12 @@
       logToGoogleSheet("複製AI咒語", `${persona.title} - 錦囊${activeTabIndex + 1}`);
     });
 
-    document.getElementById('btnSubmissionLink').addEventListener('click', () => {
-      logToGoogleSheet("點擊徵件投稿", "前往投稿搶500元");
+    document.getElementById('btnRegistrationLink').addEventListener('click', () => {
+      logToGoogleSheet("點擊專講引流按鈕", "前往報名10月專講");
     });
 
     document.getElementById('btnReplayLink').addEventListener('click', () => {
-      logToGoogleSheet("點擊LMS回放", "前往LMS補課");
+      logToGoogleSheet("點擊LMS回放", "前往LMS先修");
     });
 
     document.getElementById('btnRestart').addEventListener('click', () => {
